@@ -1,5 +1,18 @@
 # encoding: utf-8
+# vim:set ft=ruby
 
 class Transition
-  # To change this template use File | Settings | File Templates.
+  
+  def initialize(source, trigger, target)
+    @source  = source
+    @trigger = trigger
+    @target  = target
+  end
+
+  attr_reader :source, :trigger, :target
+
+  def event_name
+    @trigger.name
+  end
+
 end

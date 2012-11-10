@@ -9,3 +9,13 @@ Feature: state machine example
     Given an order is in state "new"
     When the event "order processed" has occurred
     Then the order will be in state "processed"
+
+  Scenario:
+    Given an order is in state "new"
+    When the event "order cancelled" has occurred
+    Then the order will be in state "cancelled"
+
+  Scenario:
+    Given an order is in state "processed"
+    When the event "invoice was paid" has occurred
+    Then the order will be in state "paid"
