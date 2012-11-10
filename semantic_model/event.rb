@@ -13,8 +13,18 @@ class Event
   
   def initialize(name)
     @name = name
+    @@all_instances << self
   end
 
   attr_reader :name
+
+  def ==(other)
+    other.respond_to?(:name) &&
+      self.name == other.name
+  end
+
+  def to_s
+    "[event:\"#{self.name}\"]"
+  end
 
 end

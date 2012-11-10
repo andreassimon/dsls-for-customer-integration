@@ -24,6 +24,6 @@ When /^the event "(.*?)" has occurred$/ do |event_name|
   @order.handle(event_name)
 end
 
-Then /^the order will be in state "(.*?)"$/ do |next_state|
-  pending # express the regexp above with the code you wish you had
+Then /^the order will be in state "(.*?)"$/ do |next_state_name|
+  @order.current_state.should == State.by_name(next_state_name)
 end
