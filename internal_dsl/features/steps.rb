@@ -14,6 +14,11 @@ class StateBuilder
 end
 
 class ModelBuilder
+
+  def initialize()
+    @delayed_initializations = Array.new
+  end
+
   def event(event_name)
     Event.new(event_name)
   end
@@ -21,7 +26,15 @@ class ModelBuilder
   def state(state_name, &block)
     state_builder = StateBuilder.new(state_name)
     if block_given?
-      state_builder.instance_eval &block
+      @delayed_initializations << proc do
+        state_builder.instance_eval &block
+      end
+    end
+  end
+
+  def emit!
+    @delayed_initializations.each do |initilization_proc|
+      initilization_proc.call
     end
   end
 end
@@ -29,6 +42,7 @@ end
 Given /^I build a semantic model through$/ do |code|
   model_builder = ModelBuilder.new
   model_builder.instance_eval(code)
+  model_builder.emit!
 end
 
 Given /^an order is in state "(.*?)"$/ do |current_state_name|
