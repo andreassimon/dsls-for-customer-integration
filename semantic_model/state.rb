@@ -4,7 +4,7 @@
 class State
 
   @@all_instances = Array.new
-  def self.by_name(state_name)
+  def self.[](state_name)
     @@all_instances.find do |state|
       state_name == state.name
     end

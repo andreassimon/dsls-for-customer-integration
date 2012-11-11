@@ -5,7 +5,7 @@ class Event
 
   @@all_instances = Array.new
 
-  def self.by_name(event_name)
+  def self.[](event_name)
     @@all_instances.find do |event|
       event_name == event.name
     end

@@ -11,13 +11,13 @@ Before do
   Event.new('order cancelled')
   Event.new('invoice was paid')
 
-  State.by_name('new').add_transition(Event.by_name('order processed'), State.by_name('processed'))
-  State.by_name('new').add_transition(Event.by_name('order cancelled'), State.by_name('cancelled'))
-  State.by_name('processed').add_transition(Event.by_name('invoice was paid'), State.by_name('paid'))
+  State['new'].add_transition(Event['order processed'], State['processed'])
+  State['new'].add_transition(Event['order cancelled'], State['cancelled'])
+  State['processed'].add_transition(Event['invoice was paid'], State['paid'])
 end
 
 Given /^an order is in state "(.*?)"$/ do |current_state_name|
-  @order = Order.new(State.by_name(current_state_name))
+  @order = Order.new(State[current_state_name])
 end
 
 When /^the event "(.*?)" has occurred$/ do |event_name|
@@ -25,5 +25,5 @@ When /^the event "(.*?)" has occurred$/ do |event_name|
 end
 
 Then /^the order will be in state "(.*?)"$/ do |next_state_name|
-  @order.current_state.should == State.by_name(next_state_name)
+  @order.current_state.should == State[next_state_name]
 end

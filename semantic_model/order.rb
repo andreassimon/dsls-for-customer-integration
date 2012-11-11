@@ -10,7 +10,7 @@ class Order
   attr_accessor :current_state 
  
   def handle(event_name)
-    @current_state = @current_state.handle(Event.by_name(event_name))
+    @current_state = @current_state.handle(Event[event_name])
   end
 
 end
