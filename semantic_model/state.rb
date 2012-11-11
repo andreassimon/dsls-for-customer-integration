@@ -5,7 +5,7 @@ class State
 
   @@all_instances = Array.new
   def self.[](state_name)
-    @@all_instances.find do |state|
+    @@all_instances.find(proc {raise "state '#{state_name}' could not be found"}) do |state|
       state_name == state.name
     end
   end
