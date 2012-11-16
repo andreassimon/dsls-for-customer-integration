@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-Feature: Command Query API
+Feature: Internal DSL (Ruby)
 
   Background:
     Given I build a semantic model through
