@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    antlr3 (1.8.12)
     builder (3.1.4)
     cucumber (1.2.1)
       builder (>= 2.1.2)
@@ -24,5 +25,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  antlr3
   cucumber
   rspec
