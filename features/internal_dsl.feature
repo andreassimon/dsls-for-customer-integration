@@ -5,19 +5,19 @@ Feature: Internal DSL (Ruby)
   Background:
     Given I use the internal DSL
       """
-        event 'order processed'
-        event 'order cancelled'
-        event 'invoice was paid'
+      event 'order processed'
+      event 'order cancelled'
+      event 'invoice was paid'
 
-        state('new') do
-          transition 'order processed' => 'processed'
-          transition 'order cancelled' => 'cancelled'
-        end
-        state('processed') do
-          transition 'invoice was paid' => 'paid'
-        end
-        state 'cancelled'
-        state 'paid'
+      state('new') do
+        transition 'order processed' => 'processed'
+        transition 'order cancelled' => 'cancelled'
+      end
+      state('processed') do
+        transition 'invoice was paid' => 'paid'
+      end
+      state 'cancelled'
+      state 'paid'
       """
 
   Scenario: new -> processed

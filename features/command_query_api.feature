@@ -5,18 +5,18 @@ Feature: Command Query API
   Background:
     Given I use the Command/Query API
       """
-        State.new('new')
-        State.new('processed')
-        State.new('cancelled')
-        State.new('paid')
+      State.new('new')
+      State.new('processed')
+      State.new('cancelled')
+      State.new('paid')
 
-        Event.new('order processed')
-        Event.new('order cancelled')
-        Event.new('invoice was paid')
+      Event.new('order processed')
+      Event.new('order cancelled')
+      Event.new('invoice was paid')
 
-        State['new'].add_transition(Event['order processed'], State['processed'])
-        State['new'].add_transition(Event['order cancelled'], State['cancelled'])
-        State['processed'].add_transition(Event['invoice was paid'], State['paid'])
+      State['new'].add_transition(Event['order processed'], State['processed'])
+      State['new'].add_transition(Event['order cancelled'], State['cancelled'])
+      State['processed'].add_transition(Event['invoice was paid'], State['paid'])
       """
 
   Scenario: new -> processed

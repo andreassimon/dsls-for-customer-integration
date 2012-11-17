@@ -5,17 +5,17 @@ Feature: External DSL (ANTLR3)
   Background:
     Given I use the external DSL
       """
-		new:
-		  [order processed] => processed
-		  [order cancelled] => cancelled
+      new:
+        [order processed] => processed
+        [order cancelled] => cancelled
 
-		processed:
-		  [invoice was paid] => paid
+      processed:
+        [invoice was paid] => paid
 
-		# States w/o transitions
-		cancelled
-		paid
-	  """
+      # States w/o transitions
+      cancelled
+      paid
+      """
 
   Scenario: new -> processed
     Given an order is in state "new"
