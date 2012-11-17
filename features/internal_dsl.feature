@@ -3,7 +3,7 @@
 Feature: Internal DSL (Ruby)
 
   Background:
-    Given I build a semantic model through
+    Given I use the internal DSL
       """
         event 'order processed'
         event 'order cancelled'

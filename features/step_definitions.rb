@@ -1,10 +1,6 @@
 # encoding: utf-8
 # vim:set ft=ruby
 
-Given /^I build a semantic model through$/ do |code|
-  instance_eval(code)
-end
-
 Given /^an order is in state "(.*?)"$/ do |current_state_name|
   @order = Order.new(State[current_state_name])
 end

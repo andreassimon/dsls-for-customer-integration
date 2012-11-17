@@ -3,7 +3,7 @@
 Feature: Command Query API
 
   Background:
-    Given I build a semantic model through
+    Given I use the Command/Query API
       """
         State.new('new')
         State.new('processed')
