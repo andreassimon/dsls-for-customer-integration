@@ -2,7 +2,15 @@
 # vim:set ft=ruby
 
 Given /^I build a semantic model through$/ do |code|
-  pending 'To be implemented'
+  $LOAD_PATH << File.expand_path('../parser', File.dirname(__FILE__))
+
+  require 'OrderStatesLexer'
+  require 'OrderStatesParser'
+
+  stream = ANTLR3::StringStream.new(code)
+  lexer  = OrderStates::Lexer.new(stream)
+  parser = OrderStates::Parser.new(lexer)
+  parser.states
 end
 
 Given /^an order is in state "(.*?)"$/ do |current_state_name|
