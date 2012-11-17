@@ -1,15 +1,23 @@
 grammar OrderStates;
 
+options {
+  language = Ruby;
+  output   = AST;
+}
+
 states : (state_definition)*;
 
-state_definition : ID (':' (transitions))*
+state_definition : state_name (':' (transition_definition)+)?
                  ;
 
-transitions      : (transition_definition)*
-                 ;
+state_name : ID
+           ;
 
-transition_definition : '[' ID ']' '=>' ID
+transition_definition : event ' '* '=>' ' '* state_name
                       ;
+
+event : '[' ID ']'
+      ;
 
 ID  :	('a'..'z')+ (' ' ('a'..'z')+)*
     ;

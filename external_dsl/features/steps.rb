@@ -12,10 +12,9 @@ Given /^I build a semantic model through$/ do |code|
   parser = OrderStates::Parser.new(lexer)
   states = parser.states
 
-  states.should_not be_nil
-
   states.each do |state|
-    State.new(state.ID)
+    puts state
+    #State.new(state.text)
   end
 end
 
