@@ -12,6 +12,7 @@ Feature: External DSL (ANTLR3)
 		processed:
 		  [invoice was paid] => paid
 
+		# States w/o transitions
 		cancelled
 		paid
 	  """
