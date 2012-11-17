@@ -10,12 +10,7 @@ Given /^I build a semantic model through$/ do |code|
   stream = ANTLR3::StringStream.new(code)
   lexer  = OrderStates::Lexer.new(stream)
   parser = OrderStates::Parser.new(lexer)
-  states = parser.states
-
-  states.each do |state|
-    puts state
-    #State.new(state.text)
-  end
+  parser.start
 end
 
 Given /^an order is in state "(.*?)"$/ do |current_state_name|

@@ -6,11 +6,11 @@ class Event
   @@all_instances = Array.new
 
   def self.[](event_name)
-    @@all_instances.find do |event|
+    @@all_instances.find(proc { Event.new event_name }) do |event|
       event_name == event.name
     end
   end
-  
+
   def initialize(name)
     @name = name
     @@all_instances << self

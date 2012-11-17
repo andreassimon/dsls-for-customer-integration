@@ -4,6 +4,7 @@
 class Transition
   
   def initialize(source, trigger, target)
+    raise ArgumentError, 'Need a trigger event' unless trigger
     @source  = source
     @trigger = trigger
     @target  = target
@@ -13,6 +14,10 @@ class Transition
 
   def event_name
     @trigger.name
+  end
+
+  def to_s
+    "#{self.source} --#{self.trigger}--> #{self.target}"
   end
 
 end

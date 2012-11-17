@@ -5,31 +5,45 @@ options {
   output   = AST;
 }
 
-states : (state_definition)*;
+start: order_states;
 
-state_definition : state_name (':' (transition_definition)+)?
-                 ;
+order_states: state_definition+
+            ;
 
-state_name : ID
-           ;
+state_definition: STATE_NAME
+                  {
+                    state_name = $STATE_NAME.text
+                    @current_state = State[state_name]
+                  }
+                  ( ':' transition+ )?
+                ;
 
-transition_definition : event ' '* '=>' ' '* state_name
-                      ;
+STATE_NAME: ('a'..'z')+
+          ;
 
-event : '[' ID ']'
+transition: EVENT TRANSITION_SYMBOL STATE_NAME
+            {
+              event_name = $EVENT.text[1..-2]
+              @current_state.add_transition(Event[event_name], State[$STATE_NAME.text])
+            }
+          ;
+
+EVENT : '[' EVENT_NAME ']'
       ;
 
-ID  :	('a'..'z')+ (' ' ('a'..'z')+)*
-    ;
+fragment
+  EVENT_NAME  :	('a'..'z')+ (' ' ('a'..'z')+)*
+      ;
+
+TRANSITION_SYMBOL : '=>'
+                  ;
+
+WHITESPACE : ' ' {$channel=HIDDEN;}
+           ;
+
+LINE_BREAK : '\n' {$channel=HIDDEN;}
+           ;
 
 COMMENT
     :   '#' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-    ;
-
-WHITESPACE
-    :   ( ' '
-        | '\t'
-        | '\r'
-        | '\n'
-        ) {$channel=HIDDEN;}
     ;
