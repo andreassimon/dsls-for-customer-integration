@@ -5,16 +5,16 @@ Feature: External DSL (ANTLR3)
   Background:
     Given I build a semantic model through
       """
-        new:
-          [order processed] => processed
-          [order cancelled] => cancelled
+		new:
+		  [order processed] => processed
+		  [order cancelled] => cancelled
 
-        processed:
-          [invoice was paid] => paid
+		processed:
+		  [invoice was paid] => paid
 
-        cancelled
-        paid
-      """
+		cancelled
+		paid
+	  """
 
   Scenario: new -> processed
     Given an order is in state "new"
