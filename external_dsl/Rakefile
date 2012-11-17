@@ -1,0 +1,14 @@
+#!/usr/bin/ruby
+# encoding: utf-8
+
+require 'antlr3/task'
+
+ANTLR3::CompileTask.define do |t|
+  t.grammar_set "OrderStates.g", output_directory: "parser"
+end
+
+desc("compile the OrderStates grammar")
+task(:default => 'antlr-grammars:compile')
+
+desc("trash all generated output")
+task(:clean => 'antlr-grammars:clobber')
