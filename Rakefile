@@ -8,7 +8,7 @@ require 'cucumber/rake/task'
 
 
 ANTLR3::CompileTask.define do |t|
-  t.grammar_set "external_dsl/OrderStates.g", output_directory: "features/external_dsl/parser"
+  t.grammar_set "features/external_dsl/grammar/OrderStates.g", output_directory: "features/external_dsl/parser"
 end
 
 Cucumber::Rake::Task.new(:features) do |t|

@@ -24,7 +24,8 @@ STATE_NAME: ('a'..'z')+
 transition: EVENT TRANSITION_SYMBOL STATE_NAME
             {
               event_name = $EVENT.text[1..-2]
-              @current_state.add_transition(Event[event_name], State[$STATE_NAME.text])
+              state_name = $STATE_NAME.text
+              @current_state.add_transition(Event[event_name], State[state_name])
             }
           ;
 
